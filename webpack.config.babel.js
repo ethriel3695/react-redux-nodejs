@@ -100,7 +100,7 @@ const base = {
 const developmentConfig = {
   devtool: 'cheap-module-inline-source-map',
   devServer: {
-    contentBase: './src',
+    contentBase: './',
     hot: true,
     inline: true,
     historyApiFallback: true,

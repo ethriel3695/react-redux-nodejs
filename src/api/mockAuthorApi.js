@@ -4,7 +4,7 @@ import delay from './delay';
 const authors = [
   {
     id: 'reuben-ellis',
-    firtName: 'Reuben',
+    firstName: 'Reuben',
     lastName: 'Ellis',
   },
   {

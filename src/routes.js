@@ -1,16 +1,18 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import { App, AboutComponent, CoursesComponent, Header } from './components';
+import { HashRouter, Route } from 'react-router-dom';
+import { App, AboutComponent, CoursesComponent, Header, ManageCourseContainer } from './components';
 
 const routes = (
-  <BrowserRouter>
+  <HashRouter>
     <div>
       <Header />
-        <Route exact={true} path='/' component={App} />
-        <Route exact={true} path = '/courses' component={CoursesComponent} />
-        <Route path = '/about' component={AboutComponent} />
+      <Route exact={true} path='/' component={App} />
+      <Route exact={true} path ='/courses' component={CoursesComponent} />
+      <Route exact={true} path ='/course' component={ManageCourseContainer} />
+      <Route exact={true} path ='/course/:id' component={ManageCourseContainer} />
+      <Route path ='/about' component={AboutComponent} />
     </div>
-  </BrowserRouter>
+  </HashRouter>
 );
 
 export default routes;
