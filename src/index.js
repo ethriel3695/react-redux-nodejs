@@ -4,14 +4,11 @@ import configureStore from './store/configureStore';
 import routes from './routes.js';
 import { Provider } from 'react-redux';
 
-// https://github.com/coryhouse/pluralsight-redux-starter/tree/master/src
-// https://github.com/stukent/chump
-
 const store = configureStore();
 
 render(
   <Provider store={store}>
-  routes,
+    {routes}
   </Provider>,
   document.getElementById('app')
 );
