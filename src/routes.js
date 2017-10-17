@@ -7,7 +7,7 @@ const routes = (
     <div>
       <Header />
         <Route exact={true} path='/' component={App} />
-        <Route path = '/courses' component={CoursesComponent} />
+        <Route exact={true} path = '/courses' component={CoursesComponent} />
         <Route path = '/about' component={AboutComponent} />
     </div>
   </BrowserRouter>
