@@ -4,15 +4,30 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
+import { authorsFormattedForDropdown } from '../../selectors/selectors';
 
-class ManageCourseContainer extends React.Component {
+function UserMessageModal (error) {
+  return (
+    error !== null && error !== undefined
+      ? <div>{`Success!`}</div> : <div>{`Error!`}</div>
+  );
+}
+
+export class ManageCourseContainer extends React.Component {
   constructor (props, context) {
     super(props, context);
 
     this.state = {
       course: Object.assign({}, this.props.course),
       errors: {},
+      saving: false,
     };
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (this.props.course.id !== nextProps.course.id) {
+      this.setState({course: Object.assign({}, nextProps.course)});
+    }
   }
 
   updateCourseState = (event) => {
@@ -22,10 +37,47 @@ class ManageCourseContainer extends React.Component {
     return this.setState({course: course});
   }
 
+  courseFormIsValid () {
+    let formIsValid = true;
+    let errors = {};
+
+    if (this.state.course.title.length < 5) {
+      errors.title = 'Title must be at least 5 characters.';
+      formIsValid = false;
+    }
+
+    this.setState({
+      errors: errors,
+    });
+    return formIsValid;
+  }
+
   saveCourse = (event) => {
     event.preventDefault();
-    this.props.actions.saveCourse(this.state.course);
+
+    if (!this.courseFormIsValid()) {
+      return;
+    }
+
+    this.setState({
+      saving: true,
+    });
+    this.props.actions.saveCourse(this.state.course)
+      .then(() => this.redirect())
+      .catch(error => {
+        UserMessageModal(error);
+        this.setState({
+          saving: false,
+        });
+      });
+  }
+
+  redirect = () => {
+    this.setState({
+      saving: false,
+    });
     this.context.router.history.push('/courses');
+    UserMessageModal('');
   }
 
   render () {
@@ -35,7 +87,8 @@ class ManageCourseContainer extends React.Component {
         onChange={this.updateCourseState}
         onSave={this.saveCourse}
         course={this.state.course}
-        errors={this.state.errors}/>
+        errors={this.state.errors}
+        saving={this.state.saving}/>
     );
   }
 }
@@ -44,14 +97,16 @@ ManageCourseContainer.propTypes = {
   course: PropTypes.object.isRequired,
   authors: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
+  history: PropTypes.object,
+  push: PropTypes.func,
 };
 
 ManageCourseContainer.contextTypes = {
   router: PropTypes.object,
-}
+};
 
 function getCourseById (courses, id) {
-  const course = courses.filter(course => course.id == id);
+  const course = courses.filter(course => course.id === id);
   if (course) {
     return course[0];
   }
@@ -59,25 +114,17 @@ function getCourseById (courses, id) {
 }
 
 function mapStateToProps (state, ownProps) {
-  console.log(ownProps.match.params.id);
   const courseId = ownProps.match.params.id;
 
   let course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
 
-  if (courseId) {
-    course = getCourseById (state.courses, courseId);
+  if (courseId && state.courses.length > 0) {
+    course = getCourseById(state.courses, courseId);
   }
-
-  const authorsFormattedForDropdown = state.authors.map(author => {
-    return {
-      value: author.id,
-      text: author.firstName + ' ' + author.lastName,
-    };
-  });
 
   return {
     course: course,
-    authors: authorsFormattedForDropdown,
+    authors: authorsFormattedForDropdown(state.authors),
   };
 }
 

@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import CourseList from './CourseList';
 
 class CoursesComponent extends React.Component {
-  constructor (props, context) {
-    super(props, context);
-  }
+  constructor (props, context) { // eslint-disable-line no-useless-constructor
+    super(props, context);// eslint-disable-line no-useless-constructor
+  }// eslint-disable-line no-useless-constructor
 
   courseRow (course, index) {
     return <div key={index}>{course.title}</div>;
@@ -20,7 +20,6 @@ class CoursesComponent extends React.Component {
 
   render () {
     const {courses} = this.props;
-
     return (
       <div>
         <h1>{`Courses`}</h1>
@@ -37,6 +36,8 @@ class CoursesComponent extends React.Component {
 CoursesComponent.propTypes = {
   courses: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
+  history: PropTypes.object,
+  push: PropTypes.func,
 };
 
 function mapStateToProps (state, ownProps) {

@@ -100,7 +100,7 @@ const base = {
 const developmentConfig = {
   devtool: 'cheap-module-inline-source-map',
   devServer: {
-    contentBase: './',
+    contentBase: './src',
     hot: true,
     inline: true,
     historyApiFallback: true,
@@ -114,7 +114,14 @@ const developmentConfig = {
 
 var productionConfig = {
   devtool: 'cheap-module-source-map',
-  plugins: [HTMLWebpackPluginConfig, productionPlugin],
+  devServer: {
+    contentBase: './dist',
+  },
+  plugins: [HTMLWebpackPluginConfig,
+    productionPlugin,
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin(),
+  ],
 };
 
 export default Object.assign({}, base,
