@@ -2,7 +2,6 @@ import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import { App, AboutComponent, CoursesComponent, HomeComponent } from './components'; // eslint-disable-line import/no-duplicates
 import { ManageCourseContainer } from './components'; // eslint-disable-line import/no-named-as-default, import/no-duplicates
-// import { connect } from 'react-redux';
 
 const routes = (
   <HashRouter>

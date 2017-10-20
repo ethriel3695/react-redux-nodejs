@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { labelText } from './styles.css';
 
 class LoadingDots extends React.Component {
   constructor (props, context) {
@@ -31,7 +32,7 @@ class LoadingDots extends React.Component {
     }
     const { dots, interval } = this.props;
     return (
-      <span {...dots}{...interval}>{text}&nbsp;</span>
+      <span className={labelText} {...dots}{...interval}>{text}&nbsp;</span>
     );
   }
 }

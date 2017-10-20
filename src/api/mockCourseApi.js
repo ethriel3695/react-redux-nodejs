@@ -45,12 +45,12 @@ const courses = [
     category: 'Career',
   },
   {
-    id: 'web-components-shadow-dom',
-    title: 'Web Component Fundamentals',
-    watchHref: 'http://www.pluralsight.com/courses/web-components-shadow-dom',
+    id: 'react-redux-web-applications',
+    title: 'Building Applications with React and Redux in ES6',
+    watchHref: 'http://www.pluralsight.com/courses/react-redux-react-router-es6',
     authorId: 'cory-house',
-    length: '5:10',
-    category: 'HTML5',
+    length: '6:13',
+    category: 'JavaScript',
   },
 ];
 

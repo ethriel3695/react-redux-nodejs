@@ -33,7 +33,6 @@ const base = {
   target: 'web',
   output: {
     path: PATHS.build,
-    publicPath: '/',
     filename: 'bundle.js',
   },
   module: {
@@ -110,9 +109,6 @@ const developmentConfig = {
 
 var productionConfig = {
   devtool: 'cheap-module-source-map',
-  devServer: {
-    contentBase: './dist',
-  },
   plugins: [HTMLWebpackPluginConfig,
     productionPlugin,
     new webpack.optimize.DedupePlugin(),

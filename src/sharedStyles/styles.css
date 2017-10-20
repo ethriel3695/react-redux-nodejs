@@ -12,7 +12,7 @@ body {
   color:black;
 }
 
-.centeredContainer {
+.centeredContainers {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,8 +53,8 @@ body {
 
 .errorMsg {
   color: #FF7777;
-  font-size: 22px;
-  text-align: center;
+  font-size: 18px;
+  text-align: left;
 }
 
 table {

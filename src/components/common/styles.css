@@ -1,7 +1,3 @@
-.container {
-  composes: centeredContainer from 'sharedStyles/styles.css';
-}
-
 .labelText {
   composes: labels from 'sharedStyles/styles.css';
 }
@@ -12,6 +8,10 @@
 
 .link {
   composes: links from 'sharedStyles/styles.css';
+}
+
+.errorMessage {
+  composes: errorMsg from 'sharedStyles/styles.css';
 }
 
 .link:hover {

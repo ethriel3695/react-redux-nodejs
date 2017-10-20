@@ -3,7 +3,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import configureStore from './store/configureStore';
 import routes from './routes.js';
-// import { App } from './components';
 import { Provider } from 'react-redux';
 import { loadCourses } from './actions/courseActions';
 import { loadAuthors } from './actions/authorActions';
@@ -18,14 +17,3 @@ render(
   </Provider>,
   document.getElementById('app')
 );
-
-// ADD Author administration
-// Delete Courses
-// Hide empty course list
-// Unsaved changes message
-// Client-side validation
-// Handle 404's
-// Show # Courses in Header
-// Pagination
-// Sort Course table
-// Revert abandoned changes
