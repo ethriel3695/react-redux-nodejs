@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as courseActions from '../../actions/courseActions';
 import PropTypes from 'prop-types';
 import CourseList from './CourseList';
+import { slogan, addButton } from './styles.css';
 
 class CoursesComponent extends React.Component {
   constructor (props, context) { // eslint-disable-line no-useless-constructor
@@ -22,10 +23,10 @@ class CoursesComponent extends React.Component {
     const {courses} = this.props;
     return (
       <div>
-        <h1>{`Courses`}</h1>
+        <h1 className={slogan}>{`Courses`}</h1>
         <input type='submit'
           value='Add Course'
-          className='addButton'
+          className={addButton}
           onClick={this.redirectToAddCoursePage}/>
         <CourseList courses={courses} />
       </div>

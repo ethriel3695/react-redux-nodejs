@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Header } from '../components';
 import { connect } from 'react-redux';
+import { centeredContainer } from '../sharedStyles/styles.css';
 
 class App extends React.Component {
   render () {
     return (
-      <div>
+      <div className={centeredContainer}>
         <Header
           loading={this.props.loading} />
-        <div className={`innerContainer`}>
+        <div>
           {this.props.children}
         </div>
       </div>
@@ -29,5 +30,3 @@ function mapStateToProps (state, ownProps) {
 }
 
 export default connect(mapStateToProps)(App);
-
-// export default App;

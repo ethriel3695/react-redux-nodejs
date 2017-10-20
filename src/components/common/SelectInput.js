@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { labelText, inputFieldSelect, inputFieldSelectContainer } from './styles.css';
 
 const SelectInput = ({name, label, onChange, defaultOption, value, error, options}) => {
   return (
-    <div className='form-group'>
-      <label htmlFor={name}>{label}</label>
-      <div className='field'>
+    <div className={inputFieldSelectContainer}>
+      <label className={labelText} htmlFor={name}>{label}</label>
+      <div className={''}>
         <select
           name={name}
           value={value}
           onChange={onChange}
-          className='form-control'>
+          className={inputFieldSelect}>
           <option value=''>{defaultOption}</option>
           {options.map((option) => {
             return <option key={option.value} value={option.value}>{option.text}</option>;

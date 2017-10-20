@@ -1,11 +1,12 @@
 import React from 'react';
+import { container, title, slogan } from './styles.css';
 
 class AboutComponent extends React.Component {
   render () {
     return (
-      <div>
-        <h1>{`About`}</h1>
-        <p>{`This application uses React, Redux, React Router and Node.js`}</p>
+      <div className={container}>
+        <h1 className={title}>{`About`}</h1>
+        <p className={slogan}>{`This application uses React, Redux, React Router and Node.js`}</p>
       </div>
     );
   }

@@ -2,17 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import LoadingDots from './LoadingDots';
+import { navContainer, link } from './styles.css';
 
 const Header = ({loading}) => {
   return (
-    <div>
-      <Link to='/' className='active'>{`Home`}</Link>
-      {' | '}
-      <Link to='/courses' className='active'>{`Courses`}</Link>
-      {' | '}
-      <Link to='/about' className='active'>{`About`}</Link>
-      {loading && <LoadingDots interval={100} dots={20}/>}
-    </div>
+    <nav className={navContainer}>
+      <ul>
+        <li><Link to='/' className={[link]}>{`Home`}</Link></li>
+        <li><Link to='/courses' className={[link]}>{`Courses`}</Link></li>
+        <li><Link to='/about' className={[link]}>{`About`}</Link></li>
+        {loading && <LoadingDots interval={100} dots={20}/>}
+      </ul>
+    </nav>
   );
 };
 

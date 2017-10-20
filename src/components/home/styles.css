@@ -1,0 +1,24 @@
+.container {
+  composes: centeredContainer from 'sharedStyles/styles.css';
+}
+
+.title {
+  composes: largeHeader from 'sharedStyles/styles.css';
+}
+
+.slogan {
+  composes: subHeader from 'sharedStyles/styles.css';
+}
+
+.aboutButton {
+  display: flex;
+  font-size: 40px;
+  flex-wrap: nowrap;
+  text-decoration: none;
+  font-weight: bold;
+  color: #4A90E2;
+}
+
+.aboutButton:hover {
+  color: #125FB6;
+}

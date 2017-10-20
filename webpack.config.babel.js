@@ -8,8 +8,8 @@ const isProduction = LAUNCH_COMMAND === 'production';
 process.env.BABEL_ENV = LAUNCH_COMMAND;
 
 const PATHS = {
-  app: path.join(__dirname, './src/index.js'),
-  build: path.join(__dirname, './dist'),
+  app: path.join(__dirname, 'src'),
+  build: path.join(__dirname, 'dist'),
 };
 
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
@@ -53,10 +53,6 @@ const base = {
             },
           }],
       },
-      // {test: /\.eot(\?v=\d+\.\d+\.\d+)?/, use: 'file-loader'},
-      // {test: /\.(woff|woff2)$/, use: 'url-loader'},
-      // {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, use: 'url-loader'},
-      // {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, use: 'url-loader'},
       {
         test: /\.(jpe?g|png|gif|svg|webp)$/i,
         use: [
@@ -93,7 +89,7 @@ const base = {
     ],
   },
   resolve: {
-    modules: [path.resolve(__dirname, './'), 'node_modules'],
+    modules: [path.resolve(__dirname, './src'), 'node_modules'],
   },
 };
 

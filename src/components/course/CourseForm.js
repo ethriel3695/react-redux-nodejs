@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
+import { container, slogan, addButton } from './styles.css';
 
 const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
   return (
-    <form>
-      <h1>{`Manage Course`}</h1>
+    <form className={container}>
+      <h1 className={slogan}>{`Manage Course`}</h1>
       <TextInput
         name='title'
-        label='title'
+        label='Title'
         value={course.title}
         onChange={onChange}
         error={errors.title}/>
@@ -40,7 +41,7 @@ const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
         type='submit'
         disabled={saving}
         value={saving ? 'Saving...' : 'Save'}
-        className='saveButton'
+        className={addButton}
         onClick={onSave}/>
     </form>
   );
