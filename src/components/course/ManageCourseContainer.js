@@ -31,7 +31,7 @@ export class ManageCourseContainer extends React.Component {
   }
 
   findProducts = () => {
-    productService.findAll({search: 1, min: 1, max: 2, page: '#/course:1'})
+    productService.findAll({page: 'react-creating-reusable-components'})
         .then(data => {
           console.log(data);
             this.setState({

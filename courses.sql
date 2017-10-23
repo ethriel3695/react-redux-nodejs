@@ -1,7 +1,3 @@
---
--- PostgreSQL database dump
---
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -10,14 +6,14 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -33,14 +29,13 @@ SET default_with_oids = false;
 -- Name: beer; Type: TABLE; Schema: public; Tablespace:
 --
 
-CREATE TABLE beer (
-    name text,
-    tags text,
-    alcohol numeric(3,1),
-    brewery text,
+CREATE TABLE course (
     id integer NOT NULL,
-    brewery_id integer,
-    image text
+    title text,
+    watchHref text,
+    watchHref authorId,
+    length text,
+    category text,
 );
 
 
@@ -48,7 +43,7 @@ CREATE TABLE beer (
 -- Name: beer_id_seq; Type: SEQUENCE; Schema: public;
 --
 
-CREATE SEQUENCE beer_id_seq
+CREATE SEQUENCE course_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -60,16 +55,16 @@ CREATE SEQUENCE beer_id_seq
 -- Name: beer_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner:
 --
 
-ALTER SEQUENCE beer_id_seq OWNED BY beer.id;
-
+ALTER SEQUENCE course_id_seq OWNED BY course.id;
 
 --
 -- Name: brewery; Type: TABLE; Schema: public; Tablespace:
 --
 
-CREATE TABLE brewery (
+CREATE TABLE author (
     id integer NOT NULL,
-    name text
+    firtName text,
+    lastName text
 );
 
 
@@ -77,7 +72,7 @@ CREATE TABLE brewery (
 -- Name: brewery_id_seq; Type: SEQUENCE; Schema: public;
 --
 
-CREATE SEQUENCE brewery_id_seq
+CREATE SEQUENCE author_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -89,52 +84,56 @@ CREATE SEQUENCE brewery_id_seq
 -- Name: brewery_id_seq; Type: SEQUENCE OWNED BY; Schema: public;
 --
 
-ALTER SEQUENCE brewery_id_seq OWNED BY brewery.id;
+ALTER SEQUENCE author_id_seq OWNED BY author.id;
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public;
 --
 
-ALTER TABLE ONLY beer ALTER COLUMN id SET DEFAULT nextval('beer_id_seq'::regclass);
+ALTER TABLE ONLY course ALTER COLUMN id SET DEFAULT nextval('course_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public;
 --
 
-ALTER TABLE ONLY brewery ALTER COLUMN id SET DEFAULT nextval('brewery_id_seq'::regclass);
+ALTER TABLE ONLY author ALTER COLUMN id SET DEFAULT nextval('author_id_seq'::regclass);
 
 
 --
 -- Data for Name: beer; Type: TABLE DATA; Schema: public;
 --
 
-COPY beer (name, tags, alcohol, brewery, id, brewery_id, image) FROM stdin;
+COPY course (id, title, watchHref, authorId, length, category) FROM stdin;
+1 Creating Reusable React Components http://pluralsight.com/courses/react-creating-reusable-components 1 6:20 JavaScript
+\.
 
 --
 -- Name: beer_id_seq; Type: SEQUENCE SET; Schema: public;
 --
-SELECT pg_catalog.setval('beer_id_seq', 1736, true);
+SELECT pg_catalog.setval('course_id_seq', 1736, true);
 --
 -- Data for Name: brewery; Type: TABLE DATA; Schema: public;
 --
-COPY brewery (id, name) FROM stdin;
+COPY author (id, firstName, lastName) FROM stdin;
+1 Reuben Ellis
+2 Jessica Ellis
 
 --
 -- Name: brewery_id_seq; Type: SEQUENCE SET; Schema: public;
 --
-SELECT pg_catalog.setval('brewery_id_seq', 360, true);
+SELECT pg_catalog.setval('author_id_seq', 360, true);
 --
 -- Name: beer_pkey; Type: CONSTRAINT; Schema: public; Tablespace:
 --
-ALTER TABLE ONLY beer
-    ADD CONSTRAINT beer_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY course
+    ADD CONSTRAINT course_pkey PRIMARY KEY (id);
 --
 -- Name: brewery_pkey; Type: CONSTRAINT; Schema: public; Tablespace:
 --
-ALTER TABLE ONLY brewery
-    ADD CONSTRAINT brewery_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY author
+    ADD CONSTRAINT author_pkey PRIMARY KEY (id);
 --
 -- PostgreSQL database dump complete
 --
