@@ -6,8 +6,8 @@ class HomeComponent extends React.Component {
   render () {
     return (
       <div className={container}>
-        <p className={title}>{`Programming: A Learning Guide`}</p>
-        <p className={slogan}>{`A tool to track beneficial learning courses!`}</p>
+        <p className={title}>{`The Developer's Journey`}</p>
+        <p className={slogan}>{`A beacon of guidance in a Universe of knowledge and possibilities!`}</p>
         <Link to='about' className={aboutButton}>{`Learn More`}</Link>
       </div>
     );

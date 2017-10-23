@@ -9,6 +9,7 @@ import open from 'open';
 const port = 3030;
 const app = express();
 const compiler = webpack(config);
+const products = require('./products');
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
@@ -17,9 +18,28 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
+// Adding CORS support
+app.all('*', function (req, res, next) {
+  // Set CORS headers: allow all origins, methods, and headers:
+  // you may want to lock this down in a production environment
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, PATCH, POST, DELETE');
+  res.header('Access-Control-Allow-Headers', req.header('access-control-request-headers'));
+
+  if (req.method === 'OPTIONS') {
+    // CORS Preflight
+    res.send();
+  } else {
+    next();
+  }
+});
+
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, '../src/'));
 });
+
+app.get('/courses', products.findAll);
+app.get('/courses/:id', products.findById);
 
 app.listen(port, function (err) {
   if (err) {
