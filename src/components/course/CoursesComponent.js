@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import CourseList from './CourseList';
 import { slogan, addButton } from './styles.css';
 
+import * as productService from '../../../tools/services/productService';
+
 class CoursesComponent extends React.Component {
   constructor (props, context) { // eslint-disable-line no-useless-constructor
     super(props, context);// eslint-disable-line no-useless-constructor
@@ -17,6 +19,35 @@ class CoursesComponent extends React.Component {
 
   redirectToAddCoursePage = () => {
     this.props.history.push('/course');
+  }
+
+  componentWillMount() {
+    this.findProducts();
+  }
+
+  // findProducts = () => {
+  // productService.findAll({page: 'react-creating-reusable-components'})
+  //     .then(data => {
+  //       console.log(data);
+  //         this.setState({
+  //             products: data.products,
+  //             page: data.page,
+  //             pageSize: data.pageSize,
+  //             total: data.total
+  //         });
+  //     });
+  // }
+  findProducts = () => {
+  productService.findAll()
+      .then(data => {
+        console.log(data);
+          this.setState({
+              products: data.products,
+              page: data.page,
+              pageSize: data.pageSize,
+              total: data.total
+          });
+      });
   }
 
   render () {

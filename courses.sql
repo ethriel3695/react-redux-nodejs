@@ -1,3 +1,4 @@
+/*
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -36,6 +37,11 @@ CREATE TABLE course (
     watchHref authorId,
     length text,
     category text,
+);
+
+
+CREATE TABLE test (
+    id serial NOT NULL
 );
 
 
@@ -137,3 +143,4 @@ ALTER TABLE ONLY author
 --
 -- PostgreSQL database dump complete
 --
+*/

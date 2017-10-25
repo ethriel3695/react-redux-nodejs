@@ -19,7 +19,7 @@ export let findAll = (values) => {
  }
   // return request({url: baseURL + '/courses' + qs})
   //   .then(data => data = JSON.parse(data));
-  return request({url: baseURL + '/#/course/' + qs})
+  return request({url: baseURL + '/products' + qs})
     .then(data => data = JSON.parse(console.log(data)));
 };
 

@@ -4,6 +4,8 @@ let db = require('./postgresAssist');
 
 let escape = s => s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 
+console.log('it gets here!');
+
 let findAll = (req, res, next) => {
   let pageSize = req.query.pageSize ? parseInt(req.query.pageSize) : 12;
   let page = req.query.page ? parseInt(req.query.page) : 1;
@@ -15,26 +17,26 @@ let findAll = (req, res, next) => {
 
   if (search) {
     values.push(escape(search));
-    whereParts.push('course.name || course.tags || course.authorId ~* $' + values.length);
+    whereParts.push('course.title || course.watchhref || course.authorId ~* $' + values.length);
   }
 
   if (min) {
     values.push(parseFloat(min));
-    whereParts.push('course.timeLength >= $' + values.length);
+    whereParts.push('course.length >= $' + values.length);
   }
 
   if (max) {
     values.push(parseFloat(max));
-    whereParts.push('course.timeLength <= $' + values.length);
+    whereParts.push('course.length <= $' + values.length);
   }
 
   let where = whereParts.length > 0 ? ('WHERE ' + whereParts.join(' AND ')) : '';
 
   let countSQL = 'SELECT COUNT(*) from course INNER JOIN author ON course.authorId = author.Id ' + where;
 
-  let sql = 'SELECT coruse.id, course.name, course.timeLength, course.tags, author.name ' +
+  let sql = 'SELECT course.id, course.title, course.length, course.watchhref, course.programmingcategory, author.firstname ' +
   'FROM course INNER JOIN author on course.authorId = author.id ' + where +
-  ' ORDER BY course.name LIMIT $' + (values.length + 1) + ' OFFSET $' + (values.length + 2);
+  ' ORDER BY course.title LIMIT $' + (values.length + 1) + ' OFFSET $' + (values.length + 2);
 
   db.query(countSql, values)
     .then(result => {
@@ -51,7 +53,7 @@ let findAll = (req, res, next) => {
 let findById = (req, res, next) => {
   let id = req.params.id;
 
-  let sql = 'SELECT coruse.id, course.name, course.timeLength, course.tags, author.name ' +
+  let sql = 'SELECT course.id, course.title, course.length, course.watchhref, course.programmingcategory, author.firstname ' +
   'FROM course INNER JOIN author on course.authorId = author.id' +
   ' WHERE course.Id = $1';
 

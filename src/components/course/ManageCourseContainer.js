@@ -6,8 +6,6 @@ import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
 import { authorsFormattedForDropdown } from '../../selectors/selectors';
 
-import * as productService from '../../../tools/services/productService';
-
 function UserMessageModal (error) {
   return (
     error !== null && error !== undefined
@@ -24,23 +22,6 @@ export class ManageCourseContainer extends React.Component {
       errors: {},
       saving: false,
     };
-  }
-
-  componentWillMount() {
-    this.findProducts();
-  }
-
-  findProducts = () => {
-    productService.findAll({page: 'react-creating-reusable-components'})
-        .then(data => {
-          console.log(data);
-            this.setState({
-                products: data.products,
-                page: data.page,
-                pageSize: data.pageSize,
-                total: data.total
-            });
-        });
   }
 
   componentWillReceiveProps (nextProps) {
