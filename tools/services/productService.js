@@ -19,8 +19,8 @@ export let findAll = (values) => {
  }
   // return request({url: baseURL + '/courses' + qs})
   //   .then(data => data = JSON.parse(data));
-  return request({url: baseURL + '/products' + qs})
-    .then(data => data = JSON.parse(console.log(data)));
+  return request({url: baseURL + '/api/courses' + qs})
+    .then(data => data = JSON.parse(data));
 };
 
 export let findById = () => {

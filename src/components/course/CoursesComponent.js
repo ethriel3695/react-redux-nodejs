@@ -6,8 +6,6 @@ import PropTypes from 'prop-types';
 import CourseList from './CourseList';
 import { slogan, addButton } from './styles.css';
 
-import * as productService from '../../../tools/services/productService';
-
 class CoursesComponent extends React.Component {
   constructor (props, context) { // eslint-disable-line no-useless-constructor
     super(props, context);// eslint-disable-line no-useless-constructor
@@ -22,7 +20,7 @@ class CoursesComponent extends React.Component {
   }
 
   componentWillMount() {
-    this.findProducts();
+    // this.findProducts();
   }
 
   // findProducts = () => {
@@ -37,18 +35,16 @@ class CoursesComponent extends React.Component {
   //         });
   //     });
   // }
-  findProducts = () => {
-  productService.findAll()
-      .then(data => {
-        console.log(data);
-          this.setState({
-              products: data.products,
-              page: data.page,
-              pageSize: data.pageSize,
-              total: data.total
-          });
-      });
-  }
+  // findProducts = () => {
+  // productService.findAll()
+  //     .then(data => {
+  //       console.log(data);
+  //         this.setState({
+  //             products: data.products,
+  //             total: data.total
+  //         });
+  //     });
+  // }
 
   render () {
     const {courses} = this.props;
@@ -59,7 +55,7 @@ class CoursesComponent extends React.Component {
           value='Add Course'
           className={addButton}
           onClick={this.redirectToAddCoursePage}/>
-        <CourseList courses={courses} />
+        <CourseList courses={courses.products} />
       </div>
     );
   }

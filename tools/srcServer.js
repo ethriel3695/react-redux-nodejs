@@ -6,7 +6,7 @@ import open from 'open';
 
 /* eslint-disable no-console */
 
-const port = 3030;
+const port = 3000;
 const app = express();
 const compiler = webpack(config);
 const products = require('./products');
@@ -38,8 +38,14 @@ app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, '../src/'));
 });
 
-app.get('/courses', products.findAll);
-app.get('/courses/:id', products.findById);
+// app.get('/coursesList', function (req, res) {
+//   console.log("We made it!");
+
+//   products.findAll;
+// });
+
+app.get('/api/courses', products.findAll);
+// app.get('/courses/:id', products.findById);
 
 app.listen(port, function (err) {
   if (err) {

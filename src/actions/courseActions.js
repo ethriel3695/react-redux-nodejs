@@ -2,6 +2,8 @@ import * as types from './actionTypes';
 import courseApi from '../api/mockCourseApi';
 import { beginAjaxCall, ajaxCallError } from './ajaxStatusActions';
 
+import * as productService from '../../tools/services/productService';
+
 export function loadCoursesSuccess (courses) {
   return { type: types.LOAD_COURSES_SUCCESS, courses };
 }
@@ -17,7 +19,8 @@ export function updateCourseSuccess (course) {
 export function loadCourses () {
   return function (dispatch) {
     dispatch(beginAjaxCall());
-    return courseApi.getAllCourses().then(courses => {
+    return productService.findAll().then(courses => {
+      console.log(courses);
       dispatch(loadCoursesSuccess(courses));
     }).catch(error => {
       throw (error);
