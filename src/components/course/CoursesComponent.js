@@ -24,7 +24,8 @@ class CoursesComponent extends React.Component {
   }
 
   render () {
-    const {courses} = this.props.products;
+    const courses = this.props.courses;
+    console.log(courses);
     return (
        courses === undefined ? <div></div> :
       <div>

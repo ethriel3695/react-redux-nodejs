@@ -5,6 +5,7 @@ import { beginAjaxCall, ajaxCallError } from './ajaxStatusActions';
 import * as productService from '../../tools/services/productService';
 
 export function loadCoursesSuccess (courses) {
+  console.log(courses);
   return { type: types.LOAD_COURSES_SUCCESS, courses };
 }
 
@@ -20,7 +21,7 @@ export function loadCourses () {
   return function (dispatch) {
     dispatch(beginAjaxCall());
     return productService.findAll().then(courses => {
-      dispatch(loadCoursesSuccess(courses));
+      dispatch(loadCoursesSuccess(courses.products));
     }).catch(error => {
       throw (error);
     });

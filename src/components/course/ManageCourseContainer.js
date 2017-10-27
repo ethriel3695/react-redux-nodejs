@@ -17,6 +17,8 @@ export class ManageCourseContainer extends React.Component {
   constructor (props, context) {
     super(props, context);
 
+    console.log(this.props.course);
+
     this.state = {
       course: Object.assign({}, this.props.course),
       errors: {},
@@ -25,6 +27,8 @@ export class ManageCourseContainer extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
+    console.log(this.props.course.id);
+    console.log(nextProps);
     if (this.props.course.id !== nextProps.course.id) {
       this.setState({course: Object.assign({}, nextProps.course)});
     }

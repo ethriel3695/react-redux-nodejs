@@ -6,10 +6,10 @@ import { link } from './styles.css';
 const CourseListRow = ({course}) => {
   return (
     <tr>
-      <td><a className={link} href={course.watchHref} target='_blank'>{`Watch`}</a></td>
+      <td><a className={link} href={course.watchhref} target='_blank'>{`Watch`}</a></td>
       <td><Link className={link} to={`/course/${course.id}`}>{course.title}</Link></td>
-      <td>{course.authorId}</td>
-      <td>{course.category}</td>
+      <td>{course.firstname}</td>
+      <td>{course.programmingcategory}</td>
       <td>{course.length}</td>
     </tr>
   );
