@@ -20,7 +20,6 @@ export function loadCourses () {
   return function (dispatch) {
     dispatch(beginAjaxCall());
     return productService.findAll().then(courses => {
-      console.log(courses);
       dispatch(loadCoursesSuccess(courses));
     }).catch(error => {
       throw (error);

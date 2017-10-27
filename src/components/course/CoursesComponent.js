@@ -20,42 +20,20 @@ class CoursesComponent extends React.Component {
   }
 
   componentWillMount() {
-    // this.findProducts();
+
   }
 
-  // findProducts = () => {
-  // productService.findAll({page: 'react-creating-reusable-components'})
-  //     .then(data => {
-  //       console.log(data);
-  //         this.setState({
-  //             products: data.products,
-  //             page: data.page,
-  //             pageSize: data.pageSize,
-  //             total: data.total
-  //         });
-  //     });
-  // }
-  // findProducts = () => {
-  // productService.findAll()
-  //     .then(data => {
-  //       console.log(data);
-  //         this.setState({
-  //             products: data.products,
-  //             total: data.total
-  //         });
-  //     });
-  // }
-
   render () {
-    const {courses} = this.props;
+    const {courses} = this.props.products;
     return (
+       courses === undefined ? <div></div> :
       <div>
         <h1 className={slogan}>{`Courses`}</h1>
         <input type='submit'
           value='Add Course'
           className={addButton}
           onClick={this.redirectToAddCoursePage}/>
-        <CourseList courses={courses.products} />
+        <CourseList courses={courses} />
       </div>
     );
   }
