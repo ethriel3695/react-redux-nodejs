@@ -36,7 +36,6 @@ export class ManageCourseContainer extends React.Component {
 
   updateCourseState = (event) => {
     const field = event.target.name;
-    console.log(field);
     let course = this.state.course;
     course[field] = event.target.value;
     return this.setState({course: course});
@@ -129,10 +128,9 @@ function mapStateToProps (state, ownProps) {
     // console.log(state.courses, courseId);
     course = getCourseById(state.courses, courseId);
   }
-
   return {
     course: course,
-    authors: authorsFormattedForDropdown(state.authors),
+    authors: authorsFormattedForDropdown(state.authors.authors),
   };
 }
 

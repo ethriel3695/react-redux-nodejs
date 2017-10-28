@@ -40,6 +40,7 @@ app.get('*', function (req, res) {
 
 app.get('/api/courses', products.findAll);
 app.get('/api/courses/:id', products.findById);
+app.get('/api/authors', products.findAllAuthors);
 
 app.listen(port, function (err) {
   if (err) {
