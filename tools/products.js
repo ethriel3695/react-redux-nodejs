@@ -5,10 +5,9 @@ let db = require('./postgresAssist');
 // let escape = s => s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 
 let findAll = (req, res, next) => {
-
   let countSQL = 'SELECT COUNT(*) from course INNER JOIN author ON course.authorId = author.Id;';
 
-  let sql = 'SELECT course.id, course.title, course.length, course.watchhref, course.programmingcategory, author.firstname ' +
+  let sql = 'SELECT course.id, course.title, course.length, course.watchhref, course.programmingcategory, author.firstname, author.lastname ' +
   'FROM course INNER JOIN author on course.authorId = author.id ' +
   ' ORDER BY course.title;';
 
@@ -18,7 +17,6 @@ let findAll = (req, res, next) => {
 
       db.query(sql)
         .then(products => {
-          console.log(products);
           return res.json({'total': total, 'products': products});
         })
         .catch(next);

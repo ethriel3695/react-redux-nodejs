@@ -17,7 +17,7 @@ export class ManageCourseContainer extends React.Component {
   constructor (props, context) {
     super(props, context);
 
-    console.log(this.props.course);
+    // console.log(`This is the one ${this.props.course}`);
 
     this.state = {
       course: Object.assign({}, this.props.course),
@@ -27,8 +27,8 @@ export class ManageCourseContainer extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    console.log(this.props.course.id);
-    console.log(nextProps);
+    // console.log(`Actually this ${this.props.course.id}`);
+    // console.log(`Or this ${nextProps}`);
     if (this.props.course.id !== nextProps.course.id) {
       this.setState({course: Object.assign({}, nextProps.course)});
     }
@@ -36,6 +36,7 @@ export class ManageCourseContainer extends React.Component {
 
   updateCourseState = (event) => {
     const field = event.target.name;
+    console.log(field);
     let course = this.state.course;
     course[field] = event.target.value;
     return this.setState({course: course});
@@ -110,7 +111,7 @@ ManageCourseContainer.contextTypes = {
 };
 
 function getCourseById (courses, id) {
-  const course = courses.filter(course => course.id === id);
+  const course = courses.filter(course => course.id.toString() === id);
   if (course) {
     return course[0];
   }
@@ -119,10 +120,13 @@ function getCourseById (courses, id) {
 
 function mapStateToProps (state, ownProps) {
   const courseId = ownProps.match.params.id;
+  // console.log(state);
+  // console.log(`It is This ${ownProps.match.params.id}`);
 
   let course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
 
   if (courseId && state.courses.length > 0) {
+    // console.log(state.courses, courseId);
     course = getCourseById(state.courses, courseId);
   }
 

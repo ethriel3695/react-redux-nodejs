@@ -5,7 +5,6 @@ import { beginAjaxCall, ajaxCallError } from './ajaxStatusActions';
 import * as productService from '../../tools/services/productService';
 
 export function loadCoursesSuccess (courses) {
-  console.log(courses);
   return { type: types.LOAD_COURSES_SUCCESS, courses };
 }
 

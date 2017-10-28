@@ -1,7 +1,7 @@
 'use strict';
 
-let config = require('./config');
-let databaseURL = config.databaseURL;
+// let config = require('./config');
+// let databaseURL = config.databaseURL;
 let { Pool } = require('pg');
 let pool = new Pool({
   host: `ec2-54-243-43-72.compute-1.amazonaws.com`,
@@ -16,7 +16,7 @@ let pool = new Pool({
 
 exports.query = function (sql, values, singleItem, dontLog) {
   if (!dontLog) {
-    console.log(sql);
+    // console.log(sql);
   }
 
   return new Promise((resolve, reject) => {

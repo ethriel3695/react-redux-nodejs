@@ -19,15 +19,10 @@ class CoursesComponent extends React.Component {
     this.props.history.push('/course');
   }
 
-  componentWillMount() {
-
-  }
-
   render () {
     const courses = this.props.courses;
-    console.log(courses);
+    // console.log(courses);
     return (
-       courses === undefined ? <div></div> :
       <div>
         <h1 className={slogan}>{`Courses`}</h1>
         <input type='submit'
