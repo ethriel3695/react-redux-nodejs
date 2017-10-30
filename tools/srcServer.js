@@ -1,5 +1,6 @@
 import express from 'express';
 import webpack from 'webpack';
+import bodyParser from 'body-parser';
 import path from 'path';
 import config from '../webpack.config.babel.js';
 import open from 'open';
@@ -17,6 +18,8 @@ app.use(require('webpack-dev-middleware')(compiler, {
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Adding CORS support
 app.all('*', function (req, res, next) {
@@ -41,6 +44,11 @@ app.get('*', function (req, res) {
 app.get('/api/courses', products.findAll);
 app.get('/api/courses/:id', products.findById);
 app.get('/api/authors', products.findAllAuthors);
+
+app.post('/api/saveCourse/:id', function (req, res) {
+  // res.send('this is a post request');
+  res.send(products.saveCourse);
+});
 
 app.listen(port, function (err) {
   if (err) {

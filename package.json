@@ -25,6 +25,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.2",
     "pg": "^7.3.0",
     "prop-types": "^15.6.0",
     "react": "^15.6.1",

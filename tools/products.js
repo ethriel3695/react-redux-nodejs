@@ -94,6 +94,22 @@ let findAllAuthors = (req, res, next) => {
     .catch(next);
 };
 
+let saveCourse = (req, res, next) => {
+  let id = req.params.id;
+  console.log(req.params.id);
+  console.log(req.params.title);
+  let sql = `UPDATE course SET title = ${req.params.title}, authorid = ${req.params.authorid}
+  , category = ${req.params.programmingcategory}, length = ${req.params.length}
+  WHERE course.Id = $1;`;
+
+  db.query(sql, [id])
+    .then(product => {
+      return res.json({'course': product});
+    })
+    .catch(next);
+};
+
 exports.findAll = findAll;
 exports.findById = findById;
 exports.findAllAuthors = findAllAuthors;
+exports.saveCourse = saveCourse;
