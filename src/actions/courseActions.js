@@ -13,6 +13,7 @@ export function createCourseSuccess (course) {
 }
 
 export function updateCourseSuccess (course) {
+  console.log(course)
   return { type: types.UPDATE_COURSE_SUCCESS, course };
 }
 

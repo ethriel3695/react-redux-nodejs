@@ -27,6 +27,7 @@ export class ManageCourseContainer extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
+    console.log(nextProps);
     // console.log(`Actually this ${this.props.course.id}`);
     // console.log(`Or this ${nextProps}`);
     if (this.props.course.id !== nextProps.course.id) {
@@ -77,6 +78,7 @@ export class ManageCourseContainer extends React.Component {
   }
 
   redirect = () => {
+    console.log('is it getting here');
     this.setState({
       saving: false,
     });
