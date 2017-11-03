@@ -21,7 +21,6 @@ class CoursesComponent extends React.Component {
 
   render () {
     const courses = this.props.courses;
-    // console.log(courses);
     return (
       <div>
         <h1 className={slogan}>{`Courses`}</h1>

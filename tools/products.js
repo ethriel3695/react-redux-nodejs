@@ -68,20 +68,31 @@ let saveCourse = (req, res, next) => {
   , programmingcategory = '${req.params.programmingcategory}', length = '${req.params.length}'
   WHERE course.Id = ${id};`;
 
-  let selectSQL = `SELECT course.id, course.title, course.length, course.watchhref, course.programmingcategory, author.firstname ' +
-  'FROM course INNER JOIN author on course.authorId = author.id' +
-  ' WHERE course.Id = ${id};`;
+  let selectSQL = `SELECT course.id, course.title, course.length, course.watchhref, course.programmingcategory, author.firstname
+  FROM course JOIN author on course.authorId = author.id WHERE course.Id = ${id};`;
+
+    // db.query(sql)
+    // .then(result => {
+    //   return res.json({'course': result});
+    // }).catch(next);
 
     db.query(sql)
     .then(result => {
-      console.log('Update Complete')
-    }).catch(next);
+      let total = 1;
 
-    db.query(selectSQL)
-    .then(product => {
-      console.log(product)
-      return res.json({'course': product[0]});
-    }).catch(next);
+      db.query(selectSQL)
+        .then(products => {
+          return res.json({'total': total, 'course': products});
+        })
+        .catch(next);
+    })
+    .catch(next);
+
+    // db.query(selectSQL)
+    // .then(product => {
+    //   console.log(product)
+    //   return res.json({'course': product[0]});
+    // }).catch(next);
 
 
   // db.query(sql, [id])

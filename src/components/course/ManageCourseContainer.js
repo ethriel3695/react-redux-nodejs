@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
 import { authorsFormattedForDropdown } from '../../selectors/selectors';
+// import configureStore from '../../store/configureStore';
+// import { loadCourses } from '../../actions/courseActions';
 
 function UserMessageModal (error) {
   return (
@@ -27,7 +29,6 @@ export class ManageCourseContainer extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    console.log(nextProps);
     // console.log(`Actually this ${this.props.course.id}`);
     // console.log(`Or this ${nextProps}`);
     if (this.props.course.id !== nextProps.course.id) {
@@ -68,7 +69,7 @@ export class ManageCourseContainer extends React.Component {
       saving: true,
     });
     this.props.actions.saveCourse(this.state.course)
-      .then(() => this.redirect())
+      .then(() => console.log(this.state.course), this.loadCoursesForComponent())
       .catch(error => {
         UserMessageModal(error);
         this.setState({
@@ -77,13 +78,24 @@ export class ManageCourseContainer extends React.Component {
       });
   }
 
+  loadCoursesForComponent = () => {
+    this.props.actions.loadCourses()
+      .then(() => this.redirect())
+
+      .catch(error => {
+        UserMessageModal(error);
+        this.setState({
+          saving: false,
+        });
+      })
+  }
+
   redirect = () => {
-    console.log('is it getting here');
     this.setState({
-      saving: false,
-    });
-    this.context.router.history.push('/courses');
-    UserMessageModal('');
+        saving: false,
+    })
+    this.props.history.push('/courses');
+    // this.context.router.history.push('/courses'))
   }
 
   render () {

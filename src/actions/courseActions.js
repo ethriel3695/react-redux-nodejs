@@ -9,6 +9,7 @@ export function loadCoursesSuccess (courses) {
 }
 
 export function createCourseSuccess (course) {
+  console.log(`this one is being run ${course}`)
   return { type: types.CREATE_COURSE_SUCCESS, course };
 }
 
