@@ -62,19 +62,29 @@ let findAllAuthors = (req, res, next) => {
 };
 
 let saveCourse = (req, res, next) => {
+
   let id = req.params.id;
 
-  let sql = `UPDATE course SET title = '${req.params.title}', authorid = ${req.params.authorid}
-  , programmingcategory = '${req.params.programmingcategory}', length = '${req.params.length}'
-  WHERE course.Id = ${id};`;
+  let sql = '';
+  let selectSQL = '';
 
-  let selectSQL = `SELECT course.id, course.title, course.length, course.watchhref, course.programmingcategory, author.firstname
-  FROM course JOIN author on course.authorId = author.id WHERE course.Id = ${id};`;
+  if (id == 0) {
 
-    // db.query(sql)
-    // .then(result => {
-    //   return res.json({'course': result});
-    // }).catch(next);
+    sql = `INSERT INTO course (title, authorid, length, programmingcategory, watchhref) VALUES('${req.params.title}', ${req.params.authorid}
+    , '${req.params.length}', '${req.params.programmingcategory}', 'https://github.com/ethriel3695');`;
+
+    selectSQL = `SELECT course.id, course.title, course.length, course.watchhref, course.programmingcategory, author.firstname
+    FROM course JOIN author on course.authorId = author.id WHERE course.Id = (SELECT MAX(Id) FROM course);`;
+
+  } else {
+
+    sql = `UPDATE course SET title = '${req.params.title}', authorid = ${req.params.authorid}
+    , programmingcategory = '${req.params.programmingcategory}', length = '${req.params.length}'
+    WHERE course.Id = ${id};`;
+
+    selectSQL = `SELECT course.id, course.title, course.length, course.watchhref, course.programmingcategory, author.firstname
+    FROM course JOIN author on course.authorId = author.id WHERE course.Id = ${id};`;
+  }
 
     db.query(sql)
     .then(result => {
@@ -87,28 +97,6 @@ let saveCourse = (req, res, next) => {
         .catch(next);
     })
     .catch(next);
-
-    // db.query(selectSQL)
-    // .then(product => {
-    //   console.log(product)
-    //   return res.json({'course': product[0]});
-    // }).catch(next);
-
-
-  // db.query(sql, [id])
-  //     // console.log('Update Complete')
-  //     .then(product => {
-  //       console.log(product)
-  //       return res.json({'course': product});
-  //     })
-  //     .catch(next);
-
-  // db.query(selectSQL)
-  //   .then(product => {
-  //     console.log(product)
-  //     return res.json({'course': product});
-  //   })
-  //     .catch(next);
 };
 
 exports.findAll = findAll;

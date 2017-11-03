@@ -136,7 +136,7 @@ function mapStateToProps (state, ownProps) {
   // console.log(state);
   // console.log(`It is This ${ownProps.match.params.id}`);
 
-  let course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
+  let course = {id: 0, title: '', length: '', watchhref: 'https://github.com/ethriel3695', programmingcategory: '', firstname: 'first', lastname: 'last', authorid: ''};
 
   if (courseId && state.courses.length > 0) {
     // console.log(state.courses, courseId);

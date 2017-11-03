@@ -9,12 +9,10 @@ export function loadCoursesSuccess (courses) {
 }
 
 export function createCourseSuccess (course) {
-  console.log(`this one is being run ${course}`)
   return { type: types.CREATE_COURSE_SUCCESS, course };
 }
 
 export function updateCourseSuccess (course) {
-  console.log(course)
   return { type: types.UPDATE_COURSE_SUCCESS, course };
 }
 
@@ -33,7 +31,7 @@ export function saveCourse (course) {
   return function (dispatch, getState) {
     dispatch(beginAjaxCall());
     return productService.saveCourse(course).then(savedCourse => {
-      course.id ? dispatch(updateCourseSuccess(savedCourse))
+      course.id !== 0 ? dispatch(updateCourseSuccess(savedCourse))
         : dispatch(createCourseSuccess(savedCourse));
     }).catch(error => {
       dispatch(ajaxCallError(error));

@@ -45,50 +45,11 @@ app.get('/api/courses', products.findAll);
 app.get('/api/courses/:id', products.findById);
 app.get('/api/authors', products.findAllAuthors);
 
-// app.param('id', function(req, res, next, id) {
-//   id = req.id;
-// });
-
-// app.param('title', function(req, res, next, title) {
-//   title = req.title;
-// });
-
-// app.param('length', function(req, res, next, length) {
-//   length = req.length;
-// });
-
-// app.param('watchhref', function(req, res, next, watchhref) {
-//   watchhref = req.watchhref;
-// });
-
-// app.param('programmingcategory', function(req, res, next, programmingcategory) {
-//   programmingcategory = req.programmingcategory;
-// });
-
-// app.param('firstname', function(req, res, next, firstname) {
-//   firstname = req.firstname;
-// });
-
-// app.param('lastname', function(req, res, next, lastname) {
-//   lastname = req.lastname;
-// });
-
-// app.param('authorid', function(req, res, next, authorid) {
-//   authorid = req.authorid;
-// });
-
-// app.post('/api/saveCourse/id/:id/title/:title/length/:length/watchhref/:watchhref/programmingcategory/:programmingcategory/firstname/:firstname/lastname/:lastname/authorid/:authorid', function (req, res) {
-//   // res.send('this is a post request');
-//   res.send(products.saveCourse);
-// });
-
 app.post('/api/saveCourse/id/:id/title/:title/length/:length/watchhref/:watchhref/programmingcategory/:programmingcategory/firstname/:firstname/lastname/:lastname/authorid/:authorid',
   products.saveCourse);
 
-// app.post('/api/saveCourse/:id', function (req, res) {
-//   // res.send('this is a post request');
-//   res.send(products.saveCourse);
-// });
+// app.post('/api/saveCourse/id/:id/title/:title/length/:length/watchhref/:watchhref/programmingcategory/:programmingcategory/firstname/:firstname/lastname/:lastname/authorid/:authorid',
+//   products.createCourse);
 
 app.listen(port, function (err) {
   if (err) {

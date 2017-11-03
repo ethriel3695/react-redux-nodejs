@@ -4,12 +4,6 @@ let baseURL = '';
 
 export let findAll = (values) => {
   let qs = '';
-  // if (values) {
-  //   qs = Object.keys(values).map(key => {
-  //     return encodeURIComponent(key) + '=' + encodeURIComponent(values[key]);
-  //   }).join('&');
-  //   qs = '?' + qs;
-  // }
 
   if (values) {
     qs = Object.keys(values).map(key => {
@@ -40,15 +34,19 @@ export let findAllAuthors = (values) => {
 export let saveCourse = (values) => {
   // console.log(values);
   let qs = '';
-  let id = values.id;
+
+  let id = values.id ? values.id : 0;
+
   if (values) {
     qs = Object.keys(values).map(key => {
       return encodeURIComponent(key) + '/' + encodeURIComponent(values[key]);
     }).join('/');
     qs = qs;
   }
+  console.log(qs);
+  // let urlAction = id === 0 ? 'createCourse' : 'updateCourse';
 
-  return request({url: baseURL + '/api/saveCourse/' + qs})
+  return request({url: baseURL + `/api/saveCourse/` + qs})
     .then(
       data => data = JSON.parse(data));
 };
