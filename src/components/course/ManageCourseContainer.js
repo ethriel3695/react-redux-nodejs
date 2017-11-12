@@ -5,8 +5,6 @@ import { bindActionCreators } from 'redux';
 import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
 import { authorsFormattedForDropdown } from '../../selectors/selectors';
-// import configureStore from '../../store/configureStore';
-// import { loadCourses } from '../../actions/courseActions';
 
 function UserMessageModal (error) {
   return (
@@ -60,7 +58,6 @@ export class ManageCourseContainer extends React.Component {
 
   saveCourse = (event) => {
     event.preventDefault();
-
     if (!this.courseFormIsValid()) {
       return;
     }
@@ -69,8 +66,9 @@ export class ManageCourseContainer extends React.Component {
       saving: true,
     });
     this.props.actions.saveCourse(this.state.course)
-      .then(() => console.log(this.state.course), this.loadCoursesForComponent())
+      .then(() => this.loadCoursesForComponent())
       .catch(error => {
+        console.log(`What is the error ${error}`);
         UserMessageModal(error);
         this.setState({
           saving: false,
@@ -87,13 +85,13 @@ export class ManageCourseContainer extends React.Component {
         this.setState({
           saving: false,
         });
-      })
+      });
   }
 
   redirect = () => {
     this.setState({
-        saving: false,
-    })
+      saving: false,
+    });
     this.props.history.push('/courses');
     // this.context.router.history.push('/courses'))
   }

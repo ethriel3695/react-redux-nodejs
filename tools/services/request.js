@@ -11,17 +11,11 @@ export default opts => {
       if (xhr.status >= 200 && xhr.status < 300) {
         resolve(xhr.response);
       } else {
-        reject({
-          status: this.status,
-          statusText: xhr.statusText,
-        });
+        rejectRequest(reject, xhr);
       }
     };
     xhr.onerror = () => {
-      reject({
-        status: this.status,
-        statusText: xhr.statusText,
-      });
+      rejectRequest(reject, xhr);
     };
     if (opts.headers) {
       Object.keys(opts.headers).forEach(key => {
@@ -32,3 +26,9 @@ export default opts => {
     xhr.send(opts.data);
   });
 };
+function rejectRequest (reject, xhr) {
+  reject({
+    status: this.status,
+    statusText: xhr.statusText,
+  });
+}
