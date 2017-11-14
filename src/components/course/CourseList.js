@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CourseListRow from './CourseListRow';
 
-const CourseList = ({courses}) => {
+const CourseList = ({courses, onClick}) => {
   return (
     <table>
       <thead>
@@ -12,11 +12,12 @@ const CourseList = ({courses}) => {
           <th>{`Author`}</th>
           <th>{`Category`}</th>
           <th>{`Length`}</th>
+          <th>{``}</th>
         </tr>
       </thead>
       <tbody>
         {courses.map(course =>
-          <CourseListRow key={course.id} course={course} />
+          <CourseListRow key={course.id} course={course} onClick={onClick}/>
         )}
       </tbody>
     </table>

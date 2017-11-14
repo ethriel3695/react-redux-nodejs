@@ -45,10 +45,12 @@ app.get('/api/courses', products.findAll);
 app.get('/api/courses/:id', products.findById);
 app.get('/api/authors', products.findAllAuthors);
 
-// app.post('/api/saveCourse/id/:id/title/:title/length/:length/watchhref/:watchhref/programmingcategory/:programmingcategory/firstname/:firstname/lastname/:lastname/authorid/:authorid',
-//   products.saveCourse);
+app.post('/api/saveCourse/id/:id/title/:title/length/:length/watchhref/:watchhref/programmingcategory/:programmingcategory/firstname/:firstname/lastname/:lastname/authorid/:authorid',
+  products.saveCourse);
 
-app.post('/api/saveCourses/courses', products.saveCourse);
+app.post('/api/deleteCourse/id/:id',
+  products.deleteCourse);
+// app.post('/api/saveCourses/courses/:id', products.saveCourse);
 
 // app.post('/api/saveCourse/id/:id/title/:title/length/:length/watchhref/:watchhref/programmingcategory/:programmingcategory/firstname/:firstname/lastname/:lastname/authorid/:authorid',
 //   products.createCourse);

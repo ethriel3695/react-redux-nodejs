@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { link } from './styles.css';
+import { roundButton } from './styles.css';
 
-const CourseListRow = ({course}) => {
+const CourseListRow = ({course, onClick}) => {
   return (
     <tr>
       <td><a className={link} href={course.watchhref} target='_blank'>{`Watch`}</a></td>
@@ -11,6 +12,12 @@ const CourseListRow = ({course}) => {
       <td>{`${course.firstname.toLowerCase()}-${course.lastname.toLowerCase()}`}</td>
       <td>{course.programmingcategory}</td>
       <td>{course.length}</td>
+      <td>
+      <input type='submit'
+          value='x'
+          className={roundButton}
+          onClick={onClick}/>
+      </td>
     </tr>
   );
 };
