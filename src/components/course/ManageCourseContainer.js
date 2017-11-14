@@ -68,7 +68,6 @@ export class ManageCourseContainer extends React.Component {
     this.props.actions.saveCourse(this.state.course)
       .then(() => this.loadCoursesForComponent())
       .catch(error => {
-        console.log(`What is the error ${error}`);
         UserMessageModal(error);
         this.setState({
           saving: false,

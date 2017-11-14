@@ -38,14 +38,18 @@ export let saveCourse = (values) => {
   // let id = values.id ? values.id : 0;
 
   if (values) {
+    console.log(values);
+    // qs = Object.keys(values).map(key => {
+    //   return encodeURIComponent(key) + '/' + encodeURIComponent(values[key]);
+    // }).join('/');
     qs = Object.keys(values).map(key => {
-      return encodeURIComponent(key) + '/' + encodeURIComponent(values[key]);
-    }).join('/');
+      return encodeURIComponent(values[key]);
+    });
   }
   // console.log(qs);
   // let urlAction = id === 0 ? 'createCourse' : 'updateCourse';
 
-  return request({url: baseURL + `/api/saveCourse/` + qs})
+  return request({url: baseURL + `/api/saveCourses/` + qs})
     .then(data => parseDataAsJSON(data));
 };
 

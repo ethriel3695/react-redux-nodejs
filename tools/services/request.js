@@ -1,7 +1,7 @@
 export default opts => {
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
-    // console.log(opts.url);
+    console.log(opts.url);
     if (opts.url.includes('save')) {
       xhr.open(opts.method || 'POST', opts.url);
     } else {
